@@ -17,7 +17,7 @@ class JokePage extends StatefulWidget {
 
 class _JokePageState extends State<JokePage> {
   late JokeCubit _cubit;
-  Timer? timer;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -30,12 +30,12 @@ class _JokePageState extends State<JokePage> {
   void dispose() {
     super.dispose();
 
-    timer?.cancel();
+    _timer?.cancel();
     _cubit.close();
   }
 
   void _startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       _cubit.loadJoke();
       timer.cancel();
     });
